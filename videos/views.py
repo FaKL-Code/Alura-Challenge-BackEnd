@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from videos.models import Videos
-from videos.serializer import VideoSerializer
+from videos.models import Categorias, Videos
+from videos.serializer import CategoriaSerializer, VideoSerializer
 
 
 class VideosViewSet(viewsets.ModelViewSet):
@@ -9,3 +9,10 @@ class VideosViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         return VideoSerializer
+
+class CategoriasViewSet(viewsets.ModelViewSet):
+    
+    queryset = Categorias.objects.all()
+    
+    def get_serializer_class(self):
+        return CategoriaSerializer
