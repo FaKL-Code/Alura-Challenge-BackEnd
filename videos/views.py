@@ -1,7 +1,6 @@
 from rest_framework import viewsets
 from videos.models import Categorias, Videos
 from videos.serializer import CategoriaSerializer, VideoSerializer
-from videos.filters import video_filter
 
 class VideosViewSet(viewsets.ModelViewSet):
 
@@ -9,6 +8,14 @@ class VideosViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         return VideoSerializer
+    
+    def get_queryset(self):
+        titulo = self.request.query_params.get("search")
+        if titulo:    
+            qs = Videos.objects.filter(titulo__contains=titulo)
+        else:
+            qs = self.queryset
+        return qs
 
 class CategoriasViewSet(viewsets.ModelViewSet):
     
@@ -22,7 +29,7 @@ class CategoriasVideosViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         categoria_id = self.kwargs['pk']
         if categoria_id:    
-            result = video_filter(categoria_id=categoria_id)
+            result = Videos.objects.filter(categoria_id=categoria_id)
             return result
         else:
             raise ValueError('objeto nao existe')
