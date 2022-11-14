@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from videos.models import Categorias, Videos
+from videos.models import Categoria, Video
 
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Videos
+        model = Video
         fields = ['id', 'titulo', 'descricao', 'url', 'categoria_id']
         
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Categorias
+        model = Categoria
         fields = ['id', 'titulo', 'cor']

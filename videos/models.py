@@ -1,6 +1,6 @@
 from django.db import models
 
-class Videos(models.Model):
+class Video(models.Model):
     id = models.IntegerField(primary_key=True, null=False)
     titulo = models.CharField(max_length=100, null=False)
     descricao = models.CharField(max_length=1000, null=False)
@@ -10,7 +10,7 @@ class Videos(models.Model):
     def __str__(self):
         return self.titulo
     
-class Categorias(models.Model):
+class Categoria(models.Model):
     id = models.IntegerField(primary_key=True, null=False)
     titulo = models.CharField(max_length=30, null=False)
     cor = models.CharField(max_length=20, null=False)
