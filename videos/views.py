@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from django.filters import ListFilter
+from videos.models import Videos
+from videos.serializer import VideoSerializer
 
-# Create your views here.
+
+class VideosViewSet(viewsets.ModelViewSet):
+
+    queryset = Videos.objects.all()
+
+    def get_serializer_class(self):
+        return VideoSerializer
+
