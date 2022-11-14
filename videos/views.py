@@ -1,5 +1,4 @@
 from rest_framework import viewsets
-from django.filters import ListFilter
 from videos.models import Videos
 from videos.serializer import VideoSerializer
 
@@ -10,4 +9,3 @@ class VideosViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         return VideoSerializer
-
